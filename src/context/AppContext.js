@@ -62,9 +62,12 @@ export const AppReducer = (state, action) => {
             state.budget = action.payload;
 
             if(state.budget >= 20000){
-                alert('Budget should not exceed 20000')}
-
-            if(state.budget < state.expenses){
+                alert('Budget should not exceed £20000')}
+            
+                const totalExpenses = state.expenses.reduce((total, item) => {
+                    return (total = total + item.cost);
+                    }, 0);
+            if(state.budget < totalExpenses){
                     alert('Budget should not be less than spent so far!')}
 
             return {
